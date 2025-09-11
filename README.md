@@ -50,13 +50,16 @@ chmod +x NVIDIA-Linux-x86_64-580.82.09.run
 - Rebuild initramfs
 - No to Nvidia X driver
 
-If you encounter a compiler version mismatch error during installation (`cc: error: unrecognized command-line option '-ftrivial-auto-var-init=zero'`), install GCC 12:
+> [!WARNING]  
+> If you encounter a compiler version mismatch error during installation (`cc: error: unrecognized command-line option '-ftrivial-auto-var-init=zero'`), install GCC 12:
 
 ```bash
 apt update
 apt install gcc-12 g++-12 -y
 export CC=/usr/bin/gcc-12
 ```
+
+Reboot once drivers installed
 
 ```bash
 reboot
