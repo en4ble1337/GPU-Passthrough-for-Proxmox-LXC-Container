@@ -12,7 +12,7 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/community-scripts/Proxmo
 ```
 
 ### Essential System Updates and Dependencies
-Update the system and install necessary packages including kernel headers, build tools, and monitoring utilities:
+Update the system and install necessary packages including kernel headers, build tools:
 
 ```bash
 apt update && apt upgrade -y 
