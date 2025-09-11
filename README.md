@@ -41,7 +41,7 @@ update-initramfs -u
 reboot
 ```
 
-> [!NOTE]
+> [!WARNING]
 > PVE 9.x - Basic essentials for Proxmox 9.0 - removed software-properties-common
 ```bash
 apt update && apt upgrade -y && apt install pve-headers-$(uname -r) build-essential make nvtop htop dkms gcc g++ -y
