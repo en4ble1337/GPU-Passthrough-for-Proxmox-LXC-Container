@@ -53,8 +53,8 @@ chmod +x NVIDIA-Linux-x86_64-580.82.09.run
 If you encounter a compiler version mismatch error during installation (`cc: error: unrecognized command-line option '-ftrivial-auto-var-init=zero'`), install GCC 12:
 
 ```bash
-sudo apt update
-sudo apt install gcc-12 g++-12 -y
+apt update
+apt install gcc-12 g++-12 -y
 export CC=/usr/bin/gcc-12
 ```
 
