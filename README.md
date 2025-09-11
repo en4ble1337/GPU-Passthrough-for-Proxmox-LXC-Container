@@ -11,7 +11,7 @@ For new Proxmox installations, it's highly recommended to run the community post
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/tools/pve/post-pve-install.sh)"
 ```
 
-### Essential System Updates and Dependencies
+### Essential System Updates and Dependencies (PVE 8.x)
 Update the system and install necessary packages including kernel headers, build tools:
 
 ```bash
@@ -38,6 +38,15 @@ update-initramfs -u
 ```
 
 ```bash
+reboot
+```
+
+> [!NOTE]
+> PVE 9.x - Basic essentials for Proxmox 9.0 - removed software-properties-common
+```bash
+apt update && apt upgrade -y && apt install pve-headers-$(uname -r) build-essential make nvtop htop dkms gcc g++ -y
+update-initramfs -u
+
 reboot
 ```
 
