@@ -70,13 +70,14 @@ chmod +x NVIDIA-Linux-x86_64-580.82.09.run
 ./NVIDIA-Linux-x86_64-580.82.09.run --dkms
 ```
 > [!NOTE]
-> Installation Steps:
+> Potential Popups during install
 > - MIT/GPL
 > - Alternate method of installing the NVIDIA drivers was detected - Continue
 > - Building kernel modules - Be patient
 > - No to 32bit libraries
 > - Rebuild initramfs
 > - No to Nvidia X driver
+> - Yes to register DKMS module
 
 > [!WARNING]  
 > If you encounter a compiler version mismatch error during installation (`cc: error: unrecognized command-line option '-ftrivial-auto-var-init=zero'`), install GCC 12:
