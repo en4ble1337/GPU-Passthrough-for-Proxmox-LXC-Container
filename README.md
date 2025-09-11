@@ -42,7 +42,7 @@ chmod +x NVIDIA-Linux-x86_64-580.82.09.run
 ```bash
 ./NVIDIA-Linux-x86_64-580.82.09.run --dkms
 ```
-> [!Installation Steps]
+> [!NOTE]
 > - MIT/GPL
 > - Alternate method of installing the NVIDIA drivers was detected - Continue
 > - Building kernel modules - Be patient
