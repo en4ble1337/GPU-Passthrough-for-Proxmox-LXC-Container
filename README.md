@@ -205,7 +205,7 @@ If `nvidia-smi` returns GPU information, the passthrough configuration is succes
 
 ### Docker with NVIDIA Support
 For containerized GPU workloads, set up Docker with NVIDIA runtime support:
-📖 **Instructions:** [Docker NVIDIA Setup Guide](https://github.com/en4ble1337/ai-linux-tools/blob/main/docker-nvidia.md)
+📖 **Instructions:** [Docker NVIDIA Setup Guide](https://github.com/en4ble1337/ai-linux-tools/blob/main/docker-lxc.md)
 
 ---
 
