@@ -16,6 +16,9 @@ Update the system and install necessary packages including kernel headers, build
 
 ```bash
 apt update && apt upgrade -y && apt install pve-headers-$(uname -r) build-essential software-properties-common make nvtop htop -y
+```
+
+```bash
 update-initramfs -u
 ```
 
