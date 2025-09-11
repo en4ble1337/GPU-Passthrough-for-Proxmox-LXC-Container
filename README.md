@@ -15,8 +15,21 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/community-scripts/Proxmo
 Update the system and install necessary packages including kernel headers, build tools, and monitoring utilities:
 
 ```bash
-apt update && apt upgrade -y && apt install pve-headers-$(uname -r) build-essential software-properties-common make nvtop htop -y
+apt update && apt upgrade -y 
 ```
+```bash
+apt install pve-headers-$(uname -r)
+```
+```bash
+apt install build-essential
+```
+```bash
+apt install software-properties-common
+```
+```bash
+apt install make
+```
+
 > [!NOTE]
 > Make sure no errors on this piece, otherwise won't be able to continue later.
 
