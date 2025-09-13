@@ -4,6 +4,9 @@ This comprehensive guide walks you through setting up NVIDIA GPU passthrough to 
 
 ## Initial Proxmox Setup
 
+> [!WARNING] 
+> Many marketplaces require certain privileges specifically for storage, so additional configuration might be required for those mentioned here: https://github.com/en4ble1337/proxmox-tools/blob/main/lxc-privledged-ct.md
+
 ### Post-Installation Script (Recommended for New Installs)
 For new Proxmox installations, it's highly recommended to run the community post-install script which optimizes repositories, updates sources, and applies essential configurations:
 
