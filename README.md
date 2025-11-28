@@ -106,6 +106,102 @@ Reboot once drivers installed
 reboot
 ```
 
+# Critical Kernel Version Alignment (NEW - MUST READ)
+
+## The Kernel Header Mismatch Problem
+
+One of the most common failures when installing NVIDIA drivers on Proxmox occurs when the kernel version changes between driver installation and system reboot. The NVIDIA driver builds a kernel module for a specific kernel version using DKMS. If the kernel updates, the module becomes incompatible.
+
+### Symptoms:
+* `nvidia-smi` fails with "couldn't communicate with the NVIDIA driver"
+* `modprobe nvidia` returns "FATAL: Module nvidia not found"
+* `dkms status` shows module built for a different kernel than `uname -r`
+
+## Pre-Installation Verification (CRITICAL)
+
+Before installing NVIDIA drivers, always verify:
+
+```bash
+# Check your CURRENT running kernel
+uname -r
+
+# Check which kernel headers are installed
+dpkg -l | grep pve-headers
+
+# Check if they match EXACTLY
+```
+
+### Example of a MISMATCH (BROKEN):
+
+```bash
+root@pve-h100-01:~# uname -r
+6.17.2-2-pve
+root@pve-h100-01:~# dpkg -l | grep pve-headers
+ii  pve-headers-6.17.2-1-pve    # WRONG VERSION!
+```
+
+### Example of CORRECT alignment:
+
+```bash
+root@pve-h100-01:~# uname -r
+6.17.2-2-pve
+root@pve-h100-01:~# dpkg -l | grep pve-headers
+ii  pve-headers-6.17.2-2-pve    # MATCHES!
+```
+
+## Installing Correct Kernel Headers
+
+If versions don't match, install the correct headers BEFORE driver installation:
+
+```bash
+# Install headers for your CURRENT kernel
+apt update
+apt install -y pve-headers-$(uname -r)
+```
+
+## Fixing a Broken Installation (Kernel Update Scenario)
+
+If you've already installed the driver and a kernel update broke it:
+
+```bash
+# 1. Remove old DKMS build
+dkms remove -m nvidia -v 580.105.08 --all
+
+# 2. Install correct headers (if missing)
+apt install -y pve-headers-$(uname -r)
+
+# 3. Rebuild for current kernel
+dkms install -m nvidia -v 580.105.08 -k $(uname -r)
+
+# 4. Verify installation
+dkms status
+```
+
+Expected output:
+
+```text
+nvidia/580.105.08, 6.17.2-2-pve, x86_64: installed
+```
+
+## Preventing Future Breakage
+
+### Option 1: Reinstall driver after every kernel update
+
+```bash
+# After any kernel update, rerun:
+./NVIDIA-Linux-x86_64-580.105.08.run --dkms
+```
+
+### Option 2: Pin kernel version (Advanced)
+
+```bash
+# Prevent kernel updates from breaking drivers
+apt-mark hold pve-kernel-$(uname -r)
+```
+
+> [!WARNING]
+> Pinning kernels can prevent security updates. Only use if you have a maintenance window for manual driver rebuilds.
+
 ## GPU Device Configuration
 
 ### Identify NVIDIA Device Numbers
