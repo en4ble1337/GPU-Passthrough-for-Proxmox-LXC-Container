@@ -41,13 +41,25 @@ update-initramfs -u
 reboot
 ```
 
-> [!WARNING]
+> [!NOTE]
 > PVE 9.x - Basic essentials for Proxmox 9.0
 ```bash
 apt update && apt upgrade -y && apt install pve-headers-$(uname -r) build-essential make nvtop htop dkms gcc g++ -y
 update-initramfs -u
 
 reboot
+```
+
+## Verify packages installed
+
+```bash
+for pkg in pve-headers-$(uname -r) build-essential make nvtop htop dkms gcc g++; do
+  if dpkg -s "$pkg" >/dev/null 2>&1; then
+    echo "$pkg: INSTALLED"
+  else
+    echo "$pkg: MISSING"
+  fi
+done
 ```
 
 ## NVIDIA Driver Installation
